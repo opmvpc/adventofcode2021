@@ -10,7 +10,9 @@ use Countable;
 use IteratorAggregate;
 
 /**
+ * @template T
  * @psalm-consistent-constructor
+ *
  */
 class Collection implements ArrayAccess, IteratorAggregate, Countable
 {
@@ -69,9 +71,7 @@ class Collection implements ArrayAccess, IteratorAggregate, Countable
      */
     public function offsetGet(mixed $offset): mixed
     {
-        return isset($this->elements[$offset])
-            ? $this->elements[$offset]
-            : null;
+        return $this->elements[$offset] ?? null;
     }
 
     public function toArray(): array
@@ -86,16 +86,26 @@ class Collection implements ArrayAccess, IteratorAggregate, Countable
 
     public function min(): int
     {
+        if (count($this->elements) === 0) {
+            return 0;
+        }
         return min($this->elements);
     }
 
     public function max(): int
     {
+        if (count($this->elements) === 0) {
+            return 0;
+        }
         return max($this->elements);
     }
 
     public function sum(): int
     {
+        if (count($this->elements) === 0) {
+            return 0;
+        }
+
         return intval(array_sum($this->elements));
     }
 

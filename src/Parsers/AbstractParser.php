@@ -2,6 +2,7 @@
 
 namespace Opmvpc\Aoc2021\Parsers;
 
+use Exception;
 use Opmvpc\Aoc2021\DataStructures\Collection;
 
 abstract class AbstractParser implements ParserContract
@@ -15,10 +16,14 @@ abstract class AbstractParser implements ParserContract
 
     /**
      * @param string $filename
-     * @return false|string
+     * @return string
      */
-    public static function readFileContent(string $filename): string|false
+    public static function readFileContent(string $filename): string
     {
-        return file_get_contents(dirname(__FILE__, 3) . "/files/" . $filename);
+        $fileContent = file_get_contents(dirname(__FILE__, 3) . "/files/" . $filename);
+        if ($fileContent === false) {
+            $fileContent = "";
+        }
+        return $fileContent;
     }
 }

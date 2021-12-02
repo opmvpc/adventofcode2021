@@ -13,6 +13,6 @@ class ParserDay2 extends AbstractParser
 
         return (new Collection($content))
             ->filter()
-            ->map(fn ($line) => explode(" ", $line));
+            ->map(fn (string $line) => explode(" ", $line));
     }
 }
