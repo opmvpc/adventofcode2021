@@ -10,14 +10,21 @@ use Countable;
 use IteratorAggregate;
 
 /**
- * @template T
+ * @template TKey of array-key
+ * @template TValue
+ * @implements ArrayAccess<TKey, TValue>
+ * @implements IteratorAggregate<TKey, TValue>
  * @psalm-consistent-constructor
  *
  */
 class Collection implements ArrayAccess, IteratorAggregate, Countable
 {
+    /** @var array<TKey, TValue> */
     private array $elements = [];
 
+    /**
+     * @param array<TKey, TValue> $array
+     */
     public function __construct(array $array = [])
     {
         $this->elements = $array;
@@ -28,47 +35,26 @@ class Collection implements ArrayAccess, IteratorAggregate, Countable
         return new ArrayIterator($this->elements);
     }
 
-    public static function make(array $array = []): self
+    public static function make(array $array = []): Collection
     {
-        return new static($array);
+        return new Collection($array);
     }
 
-    /**
-     * @param mixed $offset
-     * @param mixed $value
-     * @return void
-     */
     public function offsetSet(mixed $offset, mixed $value): void
     {
-        if (is_null($offset)) {
-            $this->elements[] = $value;
-        } else {
-            $this->elements[$offset] = $value;
-        }
+        $this->elements[$offset] = $value;
     }
 
-    /**
-     * @param mixed $offset
-     * @return bool
-     */
     public function offsetExists(mixed $offset): bool
     {
         return isset($this->elements[$offset]);
     }
 
-    /**
-     * @param mixed $offset
-     * @return void
-     */
     public function offsetUnset(mixed $offset): void
     {
         unset($this->elements[$offset]);
     }
 
-    /**
-     * @param mixed $offset
-     * @return mixed
-     */
     public function offsetGet(mixed $offset): mixed
     {
         return $this->elements[$offset] ?? null;
@@ -89,7 +75,7 @@ class Collection implements ArrayAccess, IteratorAggregate, Countable
         if (count($this->elements) === 0) {
             return 0;
         }
-        return min($this->elements);
+        return intval(min($this->elements));
     }
 
     public function max(): int
@@ -97,7 +83,7 @@ class Collection implements ArrayAccess, IteratorAggregate, Countable
         if (count($this->elements) === 0) {
             return 0;
         }
-        return max($this->elements);
+        return intval(max($this->elements));
     }
 
     public function sum(): int
@@ -114,6 +100,10 @@ class Collection implements ArrayAccess, IteratorAggregate, Countable
         return intval(array_product($this->elements));
     }
 
+    /**
+     * @param callable|null $callable
+     * @return $this
+     */
     public function filter(?callable $callable = null): self
     {
         if ($callable === null) {
@@ -130,7 +120,7 @@ class Collection implements ArrayAccess, IteratorAggregate, Countable
 
     /**
      * @param callable $callable
-     * @return mixed
+     * @return TValue
      */
     public function reduce(callable $callable)
     {
@@ -152,7 +142,7 @@ class Collection implements ArrayAccess, IteratorAggregate, Countable
         return $this;
     }
 
-    public function intersect(): self
+    public function intersect(): Collection
     {
         if (count($this->elements) <= 1) {
             return new static($this->elements[0]);
@@ -162,7 +152,7 @@ class Collection implements ArrayAccess, IteratorAggregate, Countable
     }
 
     /**
-     * @return mixed|null
+     * @return TValue
      */
     public function first()
     {
@@ -170,14 +160,14 @@ class Collection implements ArrayAccess, IteratorAggregate, Countable
     }
 
     /**
-     * @return mixed|null
+     * @return TValue
      */
     public function last()
     {
         return $this->elements[count($this->elements) - 1] ?? null;
     }
 
-    public function flatten(): self
+    public function flatten(): Collection
     {
         return new static(array_merge(...$this->elements));
     }
@@ -190,5 +180,12 @@ class Collection implements ArrayAccess, IteratorAggregate, Countable
     public function isEmpty(): bool
     {
         return $this->count() === 0;
+    }
+
+    public function reIndexElements(): Collection
+    {
+        $this->elements = array_values($this->elements);
+
+        return $this;
     }
 }
