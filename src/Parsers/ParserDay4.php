@@ -2,7 +2,7 @@
 
 namespace Opmvpc\Aoc2021\Parsers;
 
-use Opmvpc\Aoc2021\DataStructures\Board;
+use Opmvpc\Aoc2021\DataStructures\Day4\Board;
 use Opmvpc\Aoc2021\DataStructures\Collection;
 
 class ParserDay4 extends AbstractParser

@@ -1,6 +1,8 @@
 <?php
 
-namespace Opmvpc\Aoc2021\DataStructures;
+namespace Opmvpc\Aoc2021\DataStructures\Day4;
+
+use Opmvpc\Aoc2021\DataStructures\Collection;
 
 class Board
 {

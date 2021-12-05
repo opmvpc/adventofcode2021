@@ -12,8 +12,8 @@
 <body>
 <div id="app">
     <nav class="fixed flex justify-between h-32 px-12 bg-white w-full items-center">
-        <h1 class="text-7xl font-serif">Advent Of Code 2021</h1>
-        <button @click="getResults" class="border-4 border-black bg-indigo-800 text-indigo-100 py-4 px-8 text-3xl font-bold">Launch benchmark</button>
+        <h1 class="text-6xl font-serif">🎄 Advent Of Code 2021 ⛄</h1>
+        <button @click="getResults" class="border-4 border-black bg-indigo-800 text-indigo-100 py-4 px-8 text-3xl font-bold">Launch benchmark 🚀</button>
     </nav>
     <div class="container mx-auto pt-48">
         <table class="border-4 border-black mx-auto">
@@ -21,9 +21,9 @@
             <tr class="text-3xl">
                 <th class="py-4 px-8 text-left border-4 border-black">Day</th>
                 <th class="py-4 px-8 text-left border-4 border-black">Exercise</th>
-                <th class="py-4 px-8 text-left border-4 border-black">Parsing Time (sec)</th>
-                <th class="py-4 px-8 text-left border-4 border-black">Solving Time (sec)</th>
-                <th class="py-4 px-8 text-left border-4 border-black">Total Time (sec)</th>
+                <th class="py-4 px-8 text-left border-4 border-black">Parsing Time (ms)</th>
+                <th class="py-4 px-8 text-left border-4 border-black">Solving Time (ms)</th>
+                <th class="py-4 px-8 text-left border-4 border-black">Total Time (ms)</th>
             </tr>
             </thead>
             <tbody>
@@ -34,13 +34,13 @@
                 <td class="py-4 px-8 border-4 border-black">
                     {{result.exercise}}
                 </td>
-                <td class="py-4 px-8 border-4 border-black">
-                    {{result.parsingTime.toFixed(12)}}
+                <td class="py-4 px-8 border-4 border-black text-right">
+                    {{result.parsingTime.toFixed(10)}}
                 </td>
-                <td class="py-4 px-8 border-4 border-black">
-                    {{result.solvingTime.toFixed(12)}}
-                </td><td class="py-4 px-8 border-4 border-black">
-                {{(result.parsingTime + result.solvingTime).toFixed(12)}}
+                <td class="py-4 px-8 border-4 border-black text-right">
+                    {{result.solvingTime.toFixed(10)}}
+                </td><td class="py-4 px-8 border-4 border-black text-right">
+                {{(result.parsingTime + result.solvingTime).toFixed(10)}}
             </td>
             </tr>
             </tbody>

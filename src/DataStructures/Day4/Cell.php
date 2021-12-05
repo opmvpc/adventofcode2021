@@ -1,6 +1,6 @@
 <?php
 
-namespace Opmvpc\Aoc2021\DataStructures;
+namespace Opmvpc\Aoc2021\DataStructures\Day4;
 
 class Cell
 {

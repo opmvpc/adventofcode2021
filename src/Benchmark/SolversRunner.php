@@ -30,8 +30,11 @@ class SolversRunner
             foreach (range(1, 2) as $exercise) {
                 $result = new BenchResult($day, $exercise);
                 $this->results->add($result);
-                $result->setParsingTime($this->runParser($day));
-                $result->setSolvingTime($this->runSolver($day, $exercise));
+                try {
+                    $result->setParsingTime($this->runParser($day));
+                    $result->setSolvingTime($this->runSolver($day, $exercise));
+                } catch (\Error $e) {
+                }
             }
         }
     }
@@ -46,7 +49,7 @@ class SolversRunner
         $parser->parse($filePath);
         $end_time = microtime(true);
 
-        return $end_time - $start_time;
+        return ($end_time - $start_time) * 1000;
     }
 
     private function runSolver(int $day, int $exercise): float
@@ -59,7 +62,7 @@ class SolversRunner
         $solver->solve();
         $end_time = microtime(true);
 
-        return $end_time - $start_time;
+        return ($end_time - $start_time) * 1000;
     }
 
     /**

@@ -6,7 +6,7 @@ use Opmvpc\Aoc2021\DataStructures\Collection;
 
 abstract class AbstractSolver implements SolverContract
 {
-    protected Collection $inputArray;
+    protected Collection|array $inputArray;
 
     public function solve(): int
     {
