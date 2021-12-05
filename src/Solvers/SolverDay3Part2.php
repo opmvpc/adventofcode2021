@@ -8,7 +8,6 @@ use Opmvpc\Aoc2021\Parsers\ParserDay3;
 class SolverDay3Part2 extends AbstractSolver
 {
     /**
-     * AbstractSolver constructor.
      * @param string $path
      */
     public function __construct(

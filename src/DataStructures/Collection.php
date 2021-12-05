@@ -188,4 +188,12 @@ class Collection implements ArrayAccess, IteratorAggregate, Countable
 
         return $this;
     }
+
+    /**
+     * @param TValue $value
+     */
+    public function add(mixed $value): void
+    {
+        $this->elements[] = $value;
+    }
 }

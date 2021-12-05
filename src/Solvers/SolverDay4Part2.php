@@ -12,7 +12,6 @@ class SolverDay4Part2 extends AbstractSolver
     private Collection $boards;
 
     /**
-     * AbstractSolver constructor.
      * @param string $path
      */
     public function __construct(
