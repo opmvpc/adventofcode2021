@@ -58,11 +58,11 @@ class SolversRunner
         $filePath = $day . '/' . 2;
         $solver = new $parserName($filePath);
 
-        $start_time = microtime(true);
+        $start_time = hrtime(true);
         $solver->solve();
-        $end_time = microtime(true);
+        $end_time = hrtime(true);
 
-        return ($end_time - $start_time) * 1000;
+        return ($end_time - $start_time)/1e+6;
     }
 
     /**
