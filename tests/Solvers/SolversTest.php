@@ -14,6 +14,8 @@ use Opmvpc\Aoc2021\Solvers\SolverDay5Part1;
 use Opmvpc\Aoc2021\Solvers\SolverDay5Part2;
 use Opmvpc\Aoc2021\Solvers\SolverDay6Part1;
 use Opmvpc\Aoc2021\Solvers\SolverDay6Part2;
+use Opmvpc\Aoc2021\Solvers\SolverDay7Part1;
+use Opmvpc\Aoc2021\Solvers\SolverDay7Part2;
 use PHPUnit\Framework\TestCase;
 
 class SolversTest extends TestCase
@@ -112,5 +114,21 @@ class SolversTest extends TestCase
         $this->assertEquals(26984457539, $result);
         $result = (new SolverDay6Part2("6/2"))->solve();
         $this->assertEquals(1770823541496, $result);
+    }
+
+    public function test_7_1(): void
+    {
+        $result = (new SolverDay7Part1("7/1"))->solve();
+        $this->assertEquals(37, $result);
+        $result = (new SolverDay7Part1("7/2"))->solve();
+        $this->assertEquals(328187, $result);
+    }
+
+    public function test_7_2(): void
+    {
+        $result = (new SolverDay7Part2("7/1"))->solve();
+        $this->assertEquals(168, $result);
+        $result = (new SolverDay7Part2("7/2"))->solve();
+        $this->assertEquals(91257582, $result);
     }
 }
