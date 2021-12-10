@@ -2,6 +2,8 @@
 
 namespace Solvers;
 
+use Opmvpc\Aoc2021\Solvers\SolverDay10Part1;
+use Opmvpc\Aoc2021\Solvers\SolverDay10Part2;
 use Opmvpc\Aoc2021\Solvers\SolverDay1Part1;
 use Opmvpc\Aoc2021\Solvers\SolverDay1Part2;
 use Opmvpc\Aoc2021\Solvers\SolverDay2Part1;
@@ -130,5 +132,21 @@ class SolversTest extends TestCase
         $this->assertEquals(168, $result);
         $result = (new SolverDay7Part2("7/2"))->solve();
         $this->assertEquals(91257582, $result);
+    }
+
+    public function test_10_1(): void
+    {
+        $result = (new SolverDay10Part1("10/1"))->solve();
+        $this->assertEquals(26397, $result);
+        $result = (new SolverDay10Part1("10/2"))->solve();
+        $this->assertEquals(290691, $result);
+    }
+
+    public function test_10_2(): void
+    {
+        $result = (new SolverDay10Part2("10/1"))->solve();
+        $this->assertEquals(288957, $result);
+        $result = (new SolverDay10Part2("10/2"))->solve();
+        $this->assertEquals(2768166558, $result);
     }
 }

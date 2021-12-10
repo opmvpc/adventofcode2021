@@ -28,16 +28,16 @@ class SolverDay6Part1 extends AbstractSolver
         }
 
         for ($day = 0; $day < $this->days; $day++) {
-            $fishesByDaysLeftForNextDay = $this->makeEmtpyDaysLeftArray();
-            foreach ($fishesByDaysLeftForCurrentDay as $id => $fishCount) {
-                if ($id === 0) {
-                    $fishesByDaysLeftForNextDay[8] = $fishCount;
-                    $fishesByDaysLeftForNextDay[6] = $fishCount;
-                } else {
-                    $fishesByDaysLeftForNextDay[$id - 1] += $fishCount;
-                }
-            }
-            $fishesByDaysLeftForCurrentDay = $fishesByDaysLeftForNextDay;
+            $tempNewFishes = $fishesByDaysLeftForCurrentDay[0];
+            $fishesByDaysLeftForCurrentDay[0] = $fishesByDaysLeftForCurrentDay[1];
+            $fishesByDaysLeftForCurrentDay[1] = $fishesByDaysLeftForCurrentDay[2];
+            $fishesByDaysLeftForCurrentDay[2] = $fishesByDaysLeftForCurrentDay[3];
+            $fishesByDaysLeftForCurrentDay[3] = $fishesByDaysLeftForCurrentDay[4];
+            $fishesByDaysLeftForCurrentDay[4] = $fishesByDaysLeftForCurrentDay[5];
+            $fishesByDaysLeftForCurrentDay[5] = $fishesByDaysLeftForCurrentDay[6];
+            $fishesByDaysLeftForCurrentDay[6] = $fishesByDaysLeftForCurrentDay[7] + $tempNewFishes;
+            $fishesByDaysLeftForCurrentDay[7] = $fishesByDaysLeftForCurrentDay[8];
+            $fishesByDaysLeftForCurrentDay[8] = $tempNewFishes;
         }
 
         return array_sum($fishesByDaysLeftForCurrentDay);
@@ -46,7 +46,7 @@ class SolverDay6Part1 extends AbstractSolver
     private function makeEmtpyDaysLeftArray(): array
     {
         $array = [];
-        for ($i=0; $i < 8; $i++) {
+        for ($i=0; $i < 9; $i++) {
             $array[$i] = 0;
         }
 

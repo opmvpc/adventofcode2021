@@ -20,8 +20,9 @@ class SolversRunner
     {
         $filesPath = dirname(__FILE__, 3) . "/files/";
         $dirContent = scandir($filesPath);
+        $dirContent = array_filter($dirContent, fn ($x) => $x !== '.' && $x !== '..');
 
-        return $dirContent[array_key_last($dirContent)];
+        return max($dirContent);
     }
 
     public function run(): void
