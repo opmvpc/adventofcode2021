@@ -34,4 +34,4 @@ jobs:
         run: composer update --${{ matrix.stability }} --prefer-dist --no-interaction
 
       - name: Execute bench
-        run: php getBench.php
+        run: php commands.php bench
